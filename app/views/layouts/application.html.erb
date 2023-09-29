@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SprintSuiteTechnicalAssessment</title>
+    <title>Sprint Suite</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          fontFamily: {
+            sans: [
+              "Poppins, sans-serif",
+            ],
+          }
+        }
+      }
+    </script>
   </head>
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-[#F8FAFC]">
+    <main class="container mx-auto flex">
       <%= yield %>
     </main>
   </body>
