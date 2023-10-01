@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_01_131940) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_01_132924) do
   create_table "list_members", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "list_id", null: false
     t.string "first_name", limit: 100, null: false
@@ -27,8 +27,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_131940) do
     t.index ["name"], name: "lists_index", unique: true
   end
 
+  create_table "posts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "list_member_id", null: false
+    t.integer "source", null: false
+    t.text "content", null: false
+    t.datetime "posted_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_member_id"], name: "index_posts_on_list_member_id"
+    t.index ["source", "posted_at"], name: "posts_index", unique: true
+  end
+
   create_table "social_media_profiles", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.bigint "list_member_id"
+    t.bigint "list_member_id", null: false
     t.string "platform", limit: 100, null: false
     t.string "profile_id", null: false
     t.datetime "created_at", null: false
@@ -38,5 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_131940) do
   end
 
   add_foreign_key "list_members", "lists"
+  add_foreign_key "posts", "list_members"
   add_foreign_key "social_media_profiles", "list_members"
 end
