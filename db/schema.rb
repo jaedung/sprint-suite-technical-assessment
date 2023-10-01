@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_132924) do
 
   create_table "social_media_profiles", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "list_member_id", null: false
-    t.string "platform", limit: 100, null: false
+    t.integer "platform", null: false
     t.string "profile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

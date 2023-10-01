@@ -1,7 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+include FactoryBot::Syntax::Methods
+
+rand(5..10).times do
+  list = create(:list)
+
+  rand(10..20).times do
+    list_member = create(:list_member, list: list)
+
+    platforms = %w[twitter facebook]
+    platforms.each do |platform|
+      create(:social_media_profile, list_member: list_member, platform: platform)
+    end
+
+    sources = %w[twitter facebook]
+    sources.each do |source|
+      rand(20..30).times do
+        create(:post, list_member: list_member, source: source)
+      end
+    end
+  end
+end
