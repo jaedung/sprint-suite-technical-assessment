@@ -18,15 +18,12 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+  gem 'byebug'
+  gem 'rspec-rails'
+  gem 'ffaker'
+  gem 'factory_bot_rails'
 end
 
 group :development do
   gem 'web-console'
-end
-
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  # gem 'capybara'
-  # gem 'selenium-webdriver'
-  # gem 'webdrivers'
 end
