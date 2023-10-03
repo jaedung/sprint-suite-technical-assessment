@@ -1,4 +1,4 @@
-class List < ApplicationRecord
+class List < ApplicationRecord  
   has_many :list_members
 
   enum :list_type, { custom: 0, existing_table: 1 }

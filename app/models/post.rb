@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  POST_PER_PAGE = 10
+
   belongs_to :list_member
 
   enum :source, { twitter: 0, facebook: 1 }
