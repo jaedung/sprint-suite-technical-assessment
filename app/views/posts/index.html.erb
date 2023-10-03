@@ -1,45 +1,49 @@
-<div class="container">
+<div class="container" id="foo">
   <div class="grid my-4">
     <p class="text-[30px] font-[600] text-[#924294]">SOCIAL MEDIA POSTS</p>
   </div>
   <div class="bg-white border-[1px] border-[#D9D9D9] rounded-[10px] p-[20px]">
     <p class="text-[24px] font-[400] mb-[15px]">FILTERS:</p>
-    <div class="grid grid-cols-5 gap-x-5">
-      <div>
-        <p class="text-[12px] font-[400] text-[#767F84] mb-1">Start Date</p>
-        <div class="relative max-w-sm">
-          <div class="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none">
-            <svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.90625 2.5H8.84375V1.40625C8.84375 1.05078 9.11719 0.75 9.5 0.75C9.85547 0.75 10.1562 1.05078 10.1562 1.40625V2.5H11.25C12.207 2.5 13 3.29297 13 4.25V13C13 13.9844 12.207 14.75 11.25 14.75H2.5C1.51562 14.75 0.75 13.9844 0.75 13V4.25C0.75 3.29297 1.51562 2.5 2.5 2.5H3.59375V1.40625C3.59375 1.05078 3.86719 0.75 4.25 0.75C4.60547 0.75 4.90625 1.05078 4.90625 1.40625V2.5ZM2.0625 13C2.0625 13.2461 2.25391 13.4375 2.5 13.4375H11.25C11.4688 13.4375 11.6875 13.2461 11.6875 13V6H2.0625V13Z" fill="#767F84"/>
-            </svg>
+    <%# <form action="/posts/search" method="get"> %>
+    <%= form_for(:post, url: "/posts/search", method: 'get', remote: true) do |f| %>
+      <div class="grid grid-cols-5 gap-x-5">
+        <div>
+          <p class="text-[12px] font-[400] text-[#767F84] mb-1">Start Date</p>
+          <div class="relative max-w-sm">
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none">
+              <svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.90625 2.5H8.84375V1.40625C8.84375 1.05078 9.11719 0.75 9.5 0.75C9.85547 0.75 10.1562 1.05078 10.1562 1.40625V2.5H11.25C12.207 2.5 13 3.29297 13 4.25V13C13 13.9844 12.207 14.75 11.25 14.75H2.5C1.51562 14.75 0.75 13.9844 0.75 13V4.25C0.75 3.29297 1.51562 2.5 2.5 2.5H3.59375V1.40625C3.59375 1.05078 3.86719 0.75 4.25 0.75C4.60547 0.75 4.90625 1.05078 4.90625 1.40625V2.5ZM2.0625 13C2.0625 13.2461 2.25391 13.4375 2.5 13.4375H11.25C11.4688 13.4375 11.6875 13.2461 11.6875 13V6H2.0625V13Z" fill="#767F84"/>
+              </svg>
+            </div>
+            <input id="start-date" datepicker datepicker-autohide datepicker-format="dd/mm/yyyy" type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="DD/MM/YYYY" name="query[start_date]" value=<%= (params[:query].present? && params[:query][:start_date].present?) ? params[:query][:start_date] : '' %>>
           </div>
-          <input datepicker datepicker-autohide type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="DD/MM/YYYY">
+          <!-- <%= f.date_field :date, min: 0.days.ago, class: 'bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %> -->
         </div>
-      </div>
-      <div>
-        <p class="text-[12px] font-[400] text-[#767F84] mb-1">End Date</p>
-        <div class="relative max-w-sm">
-          <div class="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none">
-            <svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.90625 2.5H8.84375V1.40625C8.84375 1.05078 9.11719 0.75 9.5 0.75C9.85547 0.75 10.1562 1.05078 10.1562 1.40625V2.5H11.25C12.207 2.5 13 3.29297 13 4.25V13C13 13.9844 12.207 14.75 11.25 14.75H2.5C1.51562 14.75 0.75 13.9844 0.75 13V4.25C0.75 3.29297 1.51562 2.5 2.5 2.5H3.59375V1.40625C3.59375 1.05078 3.86719 0.75 4.25 0.75C4.60547 0.75 4.90625 1.05078 4.90625 1.40625V2.5ZM2.0625 13C2.0625 13.2461 2.25391 13.4375 2.5 13.4375H11.25C11.4688 13.4375 11.6875 13.2461 11.6875 13V6H2.0625V13Z" fill="#767F84"/>
-            </svg>
+        <div>
+          <p class="text-[12px] font-[400] text-[#767F84] mb-1">End Date</p>
+          <div class="relative max-w-sm">
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none">
+              <svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.90625 2.5H8.84375V1.40625C8.84375 1.05078 9.11719 0.75 9.5 0.75C9.85547 0.75 10.1562 1.05078 10.1562 1.40625V2.5H11.25C12.207 2.5 13 3.29297 13 4.25V13C13 13.9844 12.207 14.75 11.25 14.75H2.5C1.51562 14.75 0.75 13.9844 0.75 13V4.25C0.75 3.29297 1.51562 2.5 2.5 2.5H3.59375V1.40625C3.59375 1.05078 3.86719 0.75 4.25 0.75C4.60547 0.75 4.90625 1.05078 4.90625 1.40625V2.5ZM2.0625 13C2.0625 13.2461 2.25391 13.4375 2.5 13.4375H11.25C11.4688 13.4375 11.6875 13.2461 11.6875 13V6H2.0625V13Z" fill="#767F84"/>
+              </svg>
+            </div>
+            <input datepicker datepicker-autohide type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="DD/MM/YYYY" name="query[end_date]">
           </div>
-          <input datepicker datepicker-autohide type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="DD/MM/YYYY">
         </div>
-      </div>
-      <div>
-        <p class="text-[12px] font-[400] text-[#767F84] mb-1">Social Media Type</p>
-        <select id="countries" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-          <option selected>Select</option>
-          <% Post.sources.keys.each do |source| %>
-            <option value=<%= source %>><%= source.titleize %></option>
-            <% end %>
-          </select>
+        <div>
+          <p class="text-[12px] font-[400] text-[#767F84] mb-1">Social Media Type</p>
+          <!-- <select id="social_media_types" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="query[social_media_type]">
+            <option selected value="">Select</option>
+            <% Post.sources.keys.each do |source| %>
+              <option value=<%= source %>><%= source.titleize %></option>
+          <% end %>
+        </select> -->
+          <%= f.select :social_media_type, options_for_select(Post.sources.keys.map(&:titleize), (params[:query].present? && params[:query][:social_media_type].present?) ? params[:query][:social_media_type].titleize : ''), { prompt: 'Select'}, { id: 'social_media_types', class: 'bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5', name: 'query[social_media_type]' }%>
         </div>
         <div>
           <p class="text-[12px] font-[400] text-[#767F84] mb-1">Custom List</p>
-          <select id="countries" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-            <option selected>Select</option>
+          <select id="custom_lists" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="query[custom_list]">
+            <option selected value="">Select</option>
             <% List.custom.map(&:name).uniq.each do |custom_list| %>
               <option value=<%= custom_list %>><%= custom_list %></option>
               <% end %>
@@ -47,8 +51,8 @@
           </div>
           <div>
             <p class="text-[12px] font-[400] text-[#767F84] mb-1">Table</p>
-            <select id="countries" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-              <option selected>Select</option>
+            <select id="existing_tables" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="query[table]">
+              <option selected value="">Select</option>
               <% List.existing_table.map(&:name).uniq.each do |existing_table| %>
                 <option value=<%= existing_table %>><%= existing_table %></option>
                 <% end %>
@@ -56,8 +60,9 @@
             </div>
           </div>
           <div class="flex justify-end mt-3 gap-x-2">
-            <button type="button" class="text-white bg-[#FF0040] font-[600] text-[14px] px-[25px] py-[6px] rounded-[1000px]">Clear Filters</button>
-            <button type="button" class="text-white bg-[#924294] font-[600] text-[14px] px-[25px] py-[6px] rounded-[1000px]">Apply Filters</button>
+            <a href="/posts" class="text-white bg-[#FF0040] font-[600] text-[14px] px-[25px] py-[6px] rounded-[1000px]">Clear Filters</a>
+            <!-- <button type="submit" class="text-white bg-[#924294] font-[600] text-[14px] px-[25px] py-[6px] rounded-[1000px]">Apply Filters</button> -->
+            <%= f.button 'Apply Filters', type: 'submit', class: 'text-white bg-[#924294] font-[600] text-[14px] px-[25px] py-[6px] rounded-[1000px]' %>
           </div>
         </div>
         <div class="mt-8 flow-root">
@@ -100,5 +105,7 @@
         </div>
       </div>
     </div>
-  </div>
+    <%# </form> %>
+  <% end %>
+</div>
 </div>

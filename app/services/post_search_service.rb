@@ -2,7 +2,7 @@ class PostSearchService
   def initialize(query)
     @custom_list = query[:custom_list]
     @table = query[:table]
-    @social_media_type = query[:social_media_type]
+    @social_media_type = query[:social_media_type].downcase
     @start_date = query[:start_date]
     @end_date = query[:end_date]
     @page = query[:page]
