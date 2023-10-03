@@ -33,6 +33,6 @@ class PostSearchService
       @posts = @posts.where('posted_at <= ?', @end_date.to_datetime.end_of_day)
     end
 
-    @posts.page(@page).per(Post::POST_PER_PAGE)
+    @posts.page(@page)
   end
 end

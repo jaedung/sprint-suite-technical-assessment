@@ -31,10 +31,6 @@
         <p class="text-[12px] font-[400] text-[#767F84] mb-1">Social Media Type</p>
         <select id="countries" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
           <option selected>Select</option>
-          <%# <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="FR">France</option>
-          <option value="DE">Germany</option> %>
           <% Post.sources.keys.each do |source| %>
             <option value=<%= source %>><%= source.titleize %></option>
             <% end %>
@@ -47,10 +43,6 @@
             <% List.custom.map(&:name).uniq.each do |custom_list| %>
               <option value=<%= custom_list %>><%= custom_list %></option>
               <% end %>
-              <%# <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option> %>
             </select>
           </div>
           <div>
@@ -60,10 +52,6 @@
               <% List.existing_table.map(&:name).uniq.each do |existing_table| %>
                 <option value=<%= existing_table %>><%= existing_table %></option>
                 <% end %>
-                <%# <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option> %>
               </select>
             </div>
           </div>
@@ -75,7 +63,7 @@
         <div class="mt-8 flow-root">
           <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg mb-10">
+              <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg mb-5">
                 <table class="min-w-full divide-y divide-[#DFE3E6]">
                   <thead class="bg-[#EEF4F7]">
                     <tr>
@@ -106,6 +94,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="mb-10 flex justify-end">
+          <%= paginate @posts %>
         </div>
       </div>
     </div>

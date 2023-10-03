@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  POST_PER_PAGE = 10
+  paginates_per 10
 
   belongs_to :list_member
 
