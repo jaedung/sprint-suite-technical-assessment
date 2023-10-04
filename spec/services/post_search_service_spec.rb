@@ -1,36 +1,30 @@
 describe PostSearchService do
   subject { described_class.new(query) }
 
-  let(:list) { create(:list, :custom) }
+  let(:list) { create(:list) }
   let!(:list_member) { create(:list_member, list: list) }
   let!(:post) { create(:post, list_member: list_member) }
 
-  let(:custom_list) { list.name }
-  let(:table) { nil }
+  let(:list_name) { list.name }
   let(:social_media_type) { post.source }
   let(:start_date) { 2.weeks.ago.strftime('%Y-%m-%d') }
   let(:end_date) { DateTime.now.strftime('%Y-%m-%d') }
-  let(:page) { 1 }
   let(:query) {
     {
-      custom_list: custom_list,
-      table: table,
+      list: list_name,
       social_media_type: social_media_type,
       start_date: start_date,
-      end_date: end_date,
-      page: page
+      end_date: end_date
     }
   }
 
   context 'when no query is given' do
     let(:query) {
       {
-        custom_list: nil,
-        table: nil,
-        social_media_type: nil,
-        start_date: nil,
-        end_date: nil,
-        page: page
+        list: '',
+        social_media_type: '',
+        start_date: '',
+        end_date: ''
       }
     }
 
@@ -43,15 +37,13 @@ describe PostSearchService do
     end
   end
 
-  context 'when custom_list query is given' do
+  context 'when list query is given' do
     let(:query) {
       {
-        custom_list: custom_list,
-        table: nil,
-        social_media_type: nil,
-        start_date: nil,
-        end_date: nil,
-        page: page
+        list: list_name,
+        social_media_type: '',
+        start_date: '',
+        end_date: ''
       }
     }
 
@@ -61,36 +53,14 @@ describe PostSearchService do
     end
   end
 
-  context 'when table query is given' do
-    let(:list) { create(:list, :existing_table) }
-    let(:table) { list.name }
-    let(:query) {
-      {
-        custom_list: nil,
-        table: table,
-        social_media_type: nil,
-        start_date: nil,
-        end_date: nil,
-        page: page
-      }
-    }
-
-    it 'returns posts from matching list' do
-      results = subject.run
-      expect(results.length).to eq 1
-    end
-  end
-
   context 'when social_media_type query is given' do
     let(:social_media_type) { post.source }
     let(:query) {
       {
-        custom_list: nil,
-        table: nil,
+        list: '',
         social_media_type: social_media_type,
-        start_date: nil,
-        end_date: nil,
-        page: page
+        start_date: '',
+        end_date: ''
       }
     }
 
@@ -106,12 +76,10 @@ describe PostSearchService do
     let(:start_date) { 10.days.ago.strftime('%Y-%m-%d') }
     let(:query) {
       {
-        custom_list: nil,
-        table: nil,
-        social_media_type: nil,
+        list: '',
+        social_media_type: '',
         start_date: start_date,
-        end_date: nil,
-        page: page
+        end_date: ''
       }
     }
 
@@ -127,12 +95,10 @@ describe PostSearchService do
     let(:end_date) { 2.days.ago.strftime('%Y-%m-%d') }
     let(:query) {
       {
-        custom_list: nil,
-        table: nil,
-        social_media_type: nil,
-        start_date: nil,
-        end_date: end_date,
-        page: page
+        list: '',
+        social_media_type: '',
+        start_date: '',
+        end_date: end_date
       }
     }
 

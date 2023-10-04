@@ -1,10 +1,6 @@
 class PostsController < ApplicationController
   def index
-    if params[:query].present?
-      @posts = PostSearchService.new(post_search_params).run
-    else
-      @posts = Post.page(params[:page])
-    end
+    @posts = Post.page(params[:page])
   end
 
   def show
@@ -13,7 +9,7 @@ class PostsController < ApplicationController
 
   def search
     @posts = PostSearchService.new(post_search_params).run
-    # render 'index'
+    @posts = @posts.page(params[:page])
 
     respond_to do |format|
       format.html { render 'index' }
@@ -30,9 +26,7 @@ class PostsController < ApplicationController
         :start_date,
         :end_date,
         :social_media_type,
-        :custom_list,
-        :table,
-        :page
+        :list
       )
   end
 end

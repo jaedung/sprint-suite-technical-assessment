@@ -1,11 +1,9 @@
 class PostSearchService
   def initialize(query)
-    @custom_list = query[:custom_list]
-    @table = query[:table]
+    @list = query[:list]
     @social_media_type = query[:social_media_type].downcase
     @start_date = query[:start_date]
     @end_date = query[:end_date]
-    @page = query[:page]
   end
 
   def run
@@ -17,8 +15,12 @@ class PostSearchService
 
     @posts = Post.joins(list_member: :list)
 
-    if @custom_list.present? || @table.present?
-      @posts = @posts.where(lists: { name: [@custom_list, @table] })
+    # if @custom_list.present? || @table.present?
+    #   @posts = @posts.where(lists: { name: [@custom_list, @table] })
+    # end
+
+    if @list.present?
+      @posts = @posts.where(lists: { name: @list })
     end
 
     if @social_media_type.present?
@@ -33,6 +35,6 @@ class PostSearchService
       @posts = @posts.where('posted_at <= ?', @end_date.to_datetime.end_of_day)
     end
 
-    @posts.page(@page)
+    @posts
   end
 end
