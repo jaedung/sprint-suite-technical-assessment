@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.order(posted_at: :asc).page(params[:page])
+    @posts = Post.order(posted_at: :desc).page(params[:page])
   end
 
   def show
@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   def search
     @posts = PostSearchService.new(post_search_params).run
-    @posts = @posts.order(posted_at: :asc).page(params[:page])
+    @posts = @posts.order(posted_at: :desc).page(params[:page])
 
     respond_to do |format|
       format.html { render 'index' }
