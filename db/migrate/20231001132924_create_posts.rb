@@ -8,6 +8,6 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :posts, [:source, :posted_at], name: "posts_index", unique: true
+    add_index :posts, [:source, :posted_at], name: 'posts_index'
   end
 end
