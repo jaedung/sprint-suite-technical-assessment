@@ -1,11 +1,8 @@
 include FactoryBot::Syntax::Methods
 
-# custom list
-rand(5..10).times do
-  custom_list = create(:list, list_type: :custom)
-
+def create_list_members(list)
   rand(10..20).times do
-    list_member = create(:list_member, list: custom_list)
+    list_member = create(:list_member, list: list)
 
     platforms = %w[twitter facebook]
     platforms.each do |platform|
@@ -21,7 +18,14 @@ rand(5..10).times do
   end
 end
 
+# custom list
+rand(5..10).times do
+  custom_list = create(:list, list_type: :custom, name: FFaker::Company.unique.position)
+  create_list_members(custom_list)
+end
+
 # existing table list
 rand(5..10).times do
-  existing_table_list = create(:list, list_type: :existing_table)
+  existing_table_list = create(:list, list_type: :existing_table, name: FFaker::Company.unique.position)
+  create_list_members(existing_table_list)
 end
