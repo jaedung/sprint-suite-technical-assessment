@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_132924) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["list_member_id"], name: "index_posts_on_list_member_id"
-    t.index ["source", "posted_at"], name: "posts_index", unique: true
+    t.index ["source", "posted_at"], name: "posts_index"
   end
 
   create_table "social_media_profiles", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
