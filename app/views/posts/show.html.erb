@@ -8,13 +8,14 @@
         </svg>
         Delete
       </button>
-      <button type="button" class="inline-flex items-center gap-x-2 text-white bg-[#002431] font-[600] text-[14px] px-[25px] py-[6px] rounded-[1000px]">
+      <a href="/posts/<%= @post.id %>/edit" class="inline-flex items-center gap-x-2 text-white bg-[#002431] font-[600] text-[14px] px-[25px] py-[6px] rounded-[1000px]">
         <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12.5117 6.29297L6.14062 12.6641L5.21094 11.7344L5.32031 11.625H4.0625C3.81641 11.625 3.625 11.4336 3.625 11.1875V9.92969L3.51562 10.0391C3.37891 10.1758 3.29688 10.3125 3.24219 10.5039L2.61328 12.6367L4.74609 12.0078C4.91016 11.9531 5.07422 11.8711 5.21094 11.7344L6.14062 12.6641C5.86719 12.9375 5.51172 13.1562 5.12891 13.2656L1.82031 14.2227C1.60156 14.3047 1.35547 14.25 1.19141 14.0586C1 13.8945 0.945312 13.6484 1 13.4297L1.98438 10.1211C2.09375 9.73828 2.3125 9.38281 2.58594 9.10938L8.95703 2.73828L12.5117 6.29297ZM14.4531 1.86328C15.1367 2.54688 15.1367 3.66797 14.4531 4.35156L13.1406 5.66406L9.58594 2.10938L10.8984 0.796875C11.582 0.113281 12.7031 0.113281 13.3867 0.796875L14.4531 1.86328Z" fill="white"/>
         </svg>
         Edit
-      </button>
-      <button type="button" class="text-white bg-[#924294] font-[600] text-[14px] px-[25px] py-[6px] rounded-[1000px]">Back</button>
+      </a>
+      <!-- <a href="/posts" class="text-white bg-[#924294] font-[600] text-[14px] px-[25px] py-[6px] rounded-[1000px]">Back</a> -->
+      <%= link_to 'Back', request.referer || posts_path, class: 'text-white bg-[#924294] font-[600] text-[14px] px-[25px] py-[6px] rounded-[1000px]' %>
     </div>
   </div>
   <div class="grid gap-y-[25px]">

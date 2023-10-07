@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :posts, only: [:index, :show] do
+  # root 'posts#index'
+
+  get '/', to: redirect('/posts')
+
+  resources :posts, except: [:create] do
     collection do
       get 'search'
     end
