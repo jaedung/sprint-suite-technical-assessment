@@ -27,6 +27,12 @@ docker compose run --rm -e RAILS_ENV=development web bundle exec rails db:drop d
 docker compose up -d
 ```
 
+### Accessing application
+
+```
+http://localhost:3000
+```
+
 ## Testing
 
 ```
